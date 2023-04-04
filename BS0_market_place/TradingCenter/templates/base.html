@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href = "/static/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>TradingCenter</title>
+</head>
+<body class="bg-dark">
+<style>
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family:serif;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">TradingCenter</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/market_page/">Home</a>
+        </li>
+        <li class="nav-item">
+          {% if user.is_authenticated %}
+          <a class="nav-link" href="/accounts/logout/">LogOut</a>
+          {% else %}
+          <a class="nav-link" href="/accounts/login/">LogIn</a>
+          {% endif %}
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Products Menu
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/software/list/">Softwares</a></li>
+            <li><a class="dropdown-item" href="/inventory/list/">Items</a></li>
+            <li><a class="dropdown-item" href="/services/list/">Services</a></li>
+          </ul>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item"><button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Dashboard</button>
+        </li>
+        {% endif %}
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" value="{{ request.GET.si }}" name="si" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+{% if user.is_authenticated %}
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">{{ user.username }}</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+<div class="list-group">
+  <a href="/brands/list/" class="list-group-item list-group-item-action list-group-item-light">Business</a>
+  <a href="/sector/list/" class="list-group-item list-group-item-action list-group-item-light">Register new Business</a>
+  <a href="/send/message/" class="list-group-item list-group-item-action list-group-item-light">Messages </a>
+  <a href="/customer/finantial/" class="list-group-item list-group-item-action list-group-item-light">Account</a>
+ <!-- Orders Drop Box -->
+  <div class="dropdown">
+    <button class="list-group-item list-group-item-action list-group-item-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      User Orders
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li>  <a href="/brands/cart/" class="list-group-item list-group-item-action list-group-item-light">Orders </a></li>
+      <li>  <a href="/brands/cart/complete" class="list-group-item list-group-item-action list-group-item-light"> Completed Orders </a></li>
+    </ul>
+  </div>
+ <!-- Cart Drop Box -->
+  <div class="dropdown">
+    <button class="list-group-item list-group-item-action list-group-item-light dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+      User Cart
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+      <li>  <a href="/customers/cart/" class="list-group-item list-group-item-action list-group-item-light">Cart</a></li>
+      <li>  <a href="/customers/cart/complete" class="list-group-item list-group-item-action list-group-item-light">Completed Cart Orders</a></li>
+      <li>  <a href="/customer/cancel/cart" class="list-group-item list-group-item-action list-group-item-light">Cancel Orders</a></li>
+    </ul>
+  </div>
+ </div>
+  </div>
+</div>
+{% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+  </body>
+<script src="/static/sidebars.js"></script>
+<script src="/static/js/bootstrap.bundle.min.js" ></script>
+</html>

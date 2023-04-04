@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+  <form action="s">
+<input type="text" name="ssa" id="s">
+    <input type="number" name="ne" id="1" />
+
+  </form>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, rerum eos dolorem odit ullam minus autem ipsa, quaerat illum fugit officiis vitae excepturi enim odio. Veritatis eum quia voluptates eveniet deserunt sapiente iusto distinctio.
+</body>
+</html>
+
+lis =  document.getElementsByClassName("slider")
+for (obj = 0; obj < lis.length;obj++ ){
+    ids = lis[obj].classList[1]
+    console.log(ids)
+    lis[obj].addEventListener('mousedown',function(e){
+        if (objects["slider"+ids] == undefined){
+            objects["slider"+ids] = {"mouseX":0,"currentElement":0}
+          }
+            objects["slider"+ids].mouseX = e.clientX
+            });
+    lis[obj].addEventListener('mouseup',function(e){
+                if(objects["slider"+ids] != undefined){
+                    sub = e.clientX - objects["slider"+ids].mouseX
+                    if(sub >= 0){
+                        forword(ids)
+                    }else{
+                        backword(ids)
+                    }
+                }   
+             });
+}

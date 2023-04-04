@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+    <style>
+        .slider {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            flex-direction: row;
+        }
+    </style>
+
+    {% for inv in component %}
+    <br/>
+        {{inv.html|safe}}
+    {% endfor %}    
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="text-align: center;color:white"> {{name}} </h1>
+{% for inv in component %}
+    <br/>
+    {{inv.html|safe}}
+{% endfor %}
+
+{% endblock %}

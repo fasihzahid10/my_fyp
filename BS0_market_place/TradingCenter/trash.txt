@@ -1,0 +1,38 @@
+class paid_owner_features:
+  def __init__(self,invobjlis,sofobjlis,inv_button_link,soft_button_link):
+    items = f'<li class="list-group-item"><a href="{inv_button_link}" class="btn btn-primary">add Paid Inv</a> <a href="{soft_button_link}" class="btn btn-primary">add Paid Soft</a> </li>'
+    for obj in invobjlis:
+      items += f'<li class="list-group-item">{obj.description} {obj.availble} {owner_inv_feature_form(obj.availble,"inv "+str(obj.pk)).html}</li>'
+    for obj in sofobjlis:
+      items += f'<li class="list-group-item">{obj.description} {add_feature_form(obj.url,"soft "+str(obj.pk)).html}</li>'
+    self.html = f"""
+      <div class="card" style="width: 50%;min-width: 18rem;">
+        <div class="card-header">
+          Description
+        </div>
+        <ul class="list-group list-group-flush">
+            {items}
+        </ul>
+      </div>    
+    """
+
+
+class paid_cust_features:
+  def __init__(self,invobjlis,sofobjlis):
+    items = ''
+    for obj in invobjlis:
+      items += f'<li class="list-group-item">{obj.description} {cust_inv_feature_form(obj.allowed_to_add,"inv "+str(obj.pk)).html} </li>'
+    for obj in sofobjlis:
+      items += f'<li class="list-group-item">{obj.description} {soft_cust_feature_form("soft "+str(obj.pk))}</li>'
+
+    self.html = f"""
+      <div class="card" style="width: 50%;min-width: 18rem;">
+        <div class="card-header">
+          Description
+        </div>
+        <ul class="list-group list-group-flush">
+            {items}
+        </ul>
+      </div>    
+    """
+

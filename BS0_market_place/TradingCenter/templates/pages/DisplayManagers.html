@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="text-align: center;"> {{name}} </h1>
+<div style="display: flex;flex-direction: row; flex-wrap: wrap;justify-content: center;">
+{% for inv in component %}
+    <div style="margin: 2px;">
+        {{inv.html|safe}}
+    </div>
+{% endfor %}
+    </div>
+
+{% endblock %}
