@@ -8,4 +8,7 @@
  python3 manage.py migrate
  python3 manage.py runserver 
 ```
-contact me at fasihzahid10@gmail.com for any issue
+contact us at fasihzahid10@gmail.com or ahmadebtisam3@gmail.com for any issue
+
+
+
